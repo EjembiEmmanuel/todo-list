@@ -1,4 +1,4 @@
-import SidebarComponent from "./modules/sidebarComponent.js";
+import SidebarComponent from "./modules/components/Sidebar.js";
 import Main from "./modules/main.js";
 import Render from "./modules/render.js";
 

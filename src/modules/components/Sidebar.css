@@ -1,0 +1,95 @@
+#sidebar-component {
+    width: 15%;
+    background-color: rgba(34, 39, 39, 0.9);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#user-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#user-area #avatar {
+    margin-right: 10px;
+}
+
+#user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#user-details h3 {
+    font-size: 20px;
+}
+
+#user-details h3,
+#user-details p {
+    color: white;
+    font-family: monospace;
+    margin: 0;
+}
+
+#avatar {
+    width: 70px;
+}
+
+#menu-list {
+    width: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-list-item {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: start;
+    color: white;
+    font-size: 18px;
+    font-family: monospace;
+    list-style-type: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.menu-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-list-item img {
+    width: 20px;
+    margin-right: 15px;
+}
+
+#new-list-btn {
+    background-color: transparent;
+    color: white;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: center;
+    font-family: monospace;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: auto;
+    border: none;
+    border-radius: 5px;
+}
+
+#new-list-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#new-list-btn img {
+    width: 20px;
+    margin-right: 10px;
+}

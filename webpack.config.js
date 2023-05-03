@@ -5,6 +5,7 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
+    // sidebar: "./src/modules/screens/SidebarScreen.js",
   },
   devtool: "inline-source-map",
   devServer: {
