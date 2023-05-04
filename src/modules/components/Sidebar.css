@@ -1,6 +1,6 @@
 #sidebar-component {
     width: 15%;
-    background-color: rgba(34, 39, 39, 0.9);
+    background-color: rgb(34, 39, 39);
     display: flex;
     flex-direction: column;
     padding: 10px;

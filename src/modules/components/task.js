@@ -17,5 +17,10 @@ export default function Task() {
   taskIcon.src = TaskIcon;
   Render(header, taskIcon);
 
+  const headerText = document.createElement("h1");
+  headerText.setAttribute("id", "header-text");
+  headerText.textContent = "Tasks";
+  Render(header, headerText);
+
   return task;
 }
