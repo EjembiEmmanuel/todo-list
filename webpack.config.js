@@ -5,7 +5,7 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
-    // sidebar: "./src/modules/screens/SidebarScreen.js",
+    sidebar: "./src/modules/components/sidebar.js",
   },
   devtool: "inline-source-map",
   devServer: {
@@ -13,6 +13,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      template: "./src/index.html",
       title: "Todo List",
     }),
   ],

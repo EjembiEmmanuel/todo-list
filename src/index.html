@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="sidebar.bundle.js"></script></head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
 <body>
     <div id="sidebar">
         <div id="user-area">
-            <img src="c8c3afee8159ab46a7d8.svg" alt="" id="avatar">
+            <img src="<%=require('./assets/icons/avatar.svg')%>" alt="" id="avatar">
             <div id="user-details">
                 <h3 id="username">Demo User</h3>
                 <p id="useremail">demo@email.com</p>
@@ -18,25 +18,25 @@
         <div id="menu">
             <ul id="menu-list">
                 <li class="menu-list-item">
-                    <img src="d4015ea94d0297707318.svg" alt="" class="menu-icons">
-                    <p>My Day</p>
+                    <img src="<%=require('./assets/icons/day.svg')%>" alt="" class="menu-icons">
+                    My Day
                 </li>
                 <li class="menu-list-item">
-                    <img src="85d2ea0eed6c0d1c1ff0.svg" alt="" class="menu-icons">
-                    <p>Important</p>
+                    <img src="<%=require('./assets/icons/star.svg')%>" alt="" class="menu-icons">
+                    Important
                 </li>
                 <li class="menu-list-item">
-                    <img src="ded2c396dc7a6aa6f081.svg" alt="" class="menu-icons">
-                    <p>Scheduled</p>
+                    <img src="<%=require('./assets/icons/schedule.svg')%>" alt="" class="menu-icons">
+                    Scheduled
                 </li>
                 <li class="menu-list-item">
-                    <img src="aea91522052712d8fd09.svg" alt="" class="menu-icons">
-                    <p>Tasks</p>
+                    <img src="<%=require('./assets/icons/task.svg')%>" alt="" class="menu-icons">
+                    Tasks
                 </li>
             </ul>
         </div>
         <button id="new-list-btn">
-            <img src="362ac4523c56291cd908.svg" alt="" class="add-icon">
+            <img src="<%=require('./assets/icons/add.svg')%>" alt="" class="add-icon">
             New list
         </button>
     </div>
