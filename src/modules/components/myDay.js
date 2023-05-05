@@ -1,6 +1,6 @@
 import "./myDay.css";
 
-export default function Main() {
+export default function MyDay() {
   const myDay = document.createElement("div");
   myDay.setAttribute("id", "my-day-component");
 

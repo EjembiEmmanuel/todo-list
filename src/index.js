@@ -1,19 +1,13 @@
-// import "./modules/components/Sidebar.js";
-// import Main from "./modules/components/main.js";
-// import Render from "./modules/render.js";
+import MyDay from "./modules/components/myDay.js";
+import Render from "./modules/render.js";
 
 import "./style.css";
 
-function sidebarClickHandler() {
-  const body = document.getElementsByTagName("body")[0];
-  console.log(body);
-}
-
 window.onload = (event) => {
-  const body = document.getElementsByTagName("body")[0];
-  // const sidebarComponent = SidebarComponent();
-  // const main = Main();
+  const main = document.querySelector("#main");
+  const myDay = MyDay();
+  const myDayItem = document.querySelector(".menu-list-item");
+  myDayItem.classList.add("active");
 
-  // Render(body, sidebarComponent);
-  // Render(body, main);
+  Render(main, myDay);
 };

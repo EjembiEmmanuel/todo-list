@@ -11,22 +11,28 @@ menuBtns.forEach((menuBtn, index) =>
   menuBtn.addEventListener("click", function () {
     switch (index) {
       case 0:
-        let mainComponent = document.querySelector("#my-day-component");
-        if (!mainComponent) {
+        let myDayComponent = document.querySelector("#my-day-component");
+        if (!myDayComponent) {
           if (main.children.length > 0) {
+            let current = document.querySelector(".active");
+            current.classList.remove("active");
             main.children.item(0).remove();
           }
-          mainComponent = MyDay();
-          Render(main, mainComponent);
+          myDayComponent = MyDay();
+          this.classList.add("active");
+          Render(main, myDayComponent);
         }
         break;
       case 1:
         let importantComponent = document.querySelector("#important-component");
         if (!importantComponent) {
           if (main.children.length > 0) {
+            let current = document.querySelector(".active");
+            current.classList.remove("active");
             main.children.item(0).remove();
           }
           importantComponent = Important();
+          this.classList.add("active");
           Render(main, importantComponent);
         }
         break;
@@ -34,9 +40,12 @@ menuBtns.forEach((menuBtn, index) =>
         let scheduleComponent = document.querySelector("#schedule-component");
         if (!scheduleComponent) {
           if (main.children.length > 0) {
+            let current = document.querySelector(".active");
+            current.classList.remove("active");
             main.children.item(0).remove();
           }
           scheduleComponent = Schedule();
+          this.classList.add("active");
           Render(main, scheduleComponent);
         }
         break;
@@ -44,9 +53,12 @@ menuBtns.forEach((menuBtn, index) =>
         let taskComponent = document.querySelector("#task-component");
         if (!taskComponent) {
           if (main.children.length > 0) {
+            let current = document.querySelector(".active");
+            current.classList.remove("active");
             main.children.item(0).remove();
           }
           taskComponent = Task();
+          this.classList.add("active");
           Render(main, taskComponent);
           break;
         }
