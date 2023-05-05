@@ -2,6 +2,7 @@ import Render from "../render.js";
 
 import "./task.css";
 
+import AddIcon from "../../assets/icons/add.svg";
 import TaskIcon from "../../assets/icons/task.svg";
 
 export default function Task() {
@@ -21,6 +22,35 @@ export default function Task() {
   headerText.setAttribute("id", "header-text");
   headerText.textContent = "Tasks";
   Render(header, headerText);
+
+  const main = document.createElement("div");
+  main.setAttribute("id", "main");
+  Render(task, main);
+
+  const footer = document.createElement("div");
+  footer.setAttribute("id", "footer");
+  Render(task, footer);
+
+  const inputArea = document.createElement("div");
+  inputArea.setAttribute("id", "input-area");
+  Render(footer, inputArea);
+
+  const form = document.createElement("form");
+  form.setAttribute("id", "form");
+  Render(inputArea, form);
+
+  const formBtn = document.createElement("button");
+  formBtn.setAttribute("id", "form-btn");
+  Render(form, formBtn);
+
+  const addIcon = new Image();
+  addIcon.src = AddIcon;
+  Render(formBtn, addIcon);
+
+  const formInput = document.createElement("input");
+  formInput.setAttribute("id", "form-input");
+  formInput.setAttribute("placeholder", "Add a task");
+  Render(form, formInput);
 
   return task;
 }
