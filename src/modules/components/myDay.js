@@ -1,4 +1,4 @@
-import "./myDay.css";
+import "../../assets/css/myDay.css";
 
 export default function MyDay() {
   const myDay = document.createElement("div");

@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     index: "./src/index.js",
     sidebar: "./src/modules/components/sidebar.js",
+    taskController: "./src/modules/controllers/taskController.js",
   },
   devtool: "inline-source-map",
   devServer: {
@@ -20,6 +21,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    library: "lib",
     clean: true,
   },
   optimization: {

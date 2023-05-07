@@ -1,6 +1,6 @@
 import Render from "../render.js";
 
-import "./schedule.css";
+import "../../assets/css/schedule.css";
 
 import ScheduleIcon from "../../assets/icons/schedule.svg";
 

@@ -3,9 +3,10 @@ import Task from "./task.js";
 import MyDay from "./myDay.js";
 import Important from "./important.js";
 import Schedule from "./schedule.js";
+import { renderTasks } from "../controllers/taskController.js";
 
 const menuBtns = document.querySelectorAll(".menu-list-item");
-let main = document.querySelector("#main");
+let main = document.querySelector("#content");
 
 menuBtns.forEach((menuBtn, index) =>
   menuBtn.addEventListener("click", function () {
@@ -60,6 +61,7 @@ menuBtns.forEach((menuBtn, index) =>
           taskComponent = Task();
           this.classList.add("active");
           Render(main, taskComponent);
+          renderTasks();
           break;
         }
     }

@@ -1,10 +1,10 @@
 import MyDay from "./modules/components/myDay.js";
 import Render from "./modules/render.js";
 
-import "./style.css";
+import "./assets/css/style.css";
 
 window.onload = (event) => {
-  const main = document.querySelector("#main");
+  const main = document.querySelector("#content");
   const myDay = MyDay();
   const myDayItem = document.querySelector(".menu-list-item");
   myDayItem.classList.add("active");

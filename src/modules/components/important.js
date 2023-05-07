@@ -1,6 +1,6 @@
 import Render from "../render.js";
 
-import "./important.css";
+import "../../assets/css/important.css";
 
 import StarIcon from "../../assets/icons/star.svg";
 

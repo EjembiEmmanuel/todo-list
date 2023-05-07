@@ -20,6 +20,11 @@
     font-family: monospace;
 }
 
+#main {
+    padding: 30px;
+    overflow-y: scroll;
+}
+
 #footer {
     padding: 30px;
     margin-top: auto;
