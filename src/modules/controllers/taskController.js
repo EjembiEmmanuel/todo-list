@@ -47,6 +47,11 @@ export function renderTasks() {
 
     const taskContainer = document.createElement("div");
     taskContainer.setAttribute("class", "task-container");
+    taskContainer.setAttribute("data-key", `${i}`);
+    taskContainer.setAttribute(
+      "onclick",
+      "lib.showTaskDetails(this.dataset.key)"
+    );
     Render(taskContainer, circleIcon);
     Render(main, taskContainer);
 
@@ -78,5 +83,52 @@ export function removeMarkAsImportantIcon(element) {
 export function handleTask() {
   const task = createTask();
   storeTask(task);
+  renderTasks();
+}
+
+export function showTaskDetails(taskId) {
+  const taskDetails = document.querySelector("#task-details");
+  taskDetails.style.display = "flex";
+
+  const index = Number(taskId);
+
+  const task = todoList[index];
+
+  const taskTitle = document.querySelector("#task-title-text");
+  taskTitle.textContent = task.title;
+
+  const taskDate = document.querySelector("#task-date-text");
+  taskDate.textContent = `Created on ${task.dateCreated}`;
+
+  const taskNote = document.querySelector("#task-note-text");
+  taskNote.setAttribute("data-key", `${index}`);
+  if (task.description) {
+    console.log(task.description);
+    taskNote.value = task.description;
+  } else {
+    taskNote.value = "";
+  }
+
+  const deleteTaskBtn = document.querySelector("#delete-task-btn");
+  deleteTaskBtn.onclick = () => {
+    todoList.splice(index, 1);
+    renderTasks();
+    hideTaskDetails();
+  };
+}
+
+export function hideTaskDetails() {
+  const taskDetails = document.querySelector("#task-details");
+
+  taskDetails.style.display = "none";
+}
+
+export function setDescription(taskId) {
+  const taskNote = document.querySelector("#task-note-text");
+  const note = taskNote.value;
+
+  const index = Number(taskId);
+  const task = todoList[index];
+  task.description = note;
   renderTasks();
 }
