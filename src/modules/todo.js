@@ -3,6 +3,7 @@ export default class Todo {
     this.title = title;
     this.dateCreated = dateCreated;
     this.status = false;
+    this.important = false;
   }
 
   get status() {
@@ -11,6 +12,14 @@ export default class Todo {
 
   set status(status) {
     this.complete = status;
+  }
+
+  get important() {
+    return this.value;
+  }
+
+  set important(important) {
+    this.value = important;
   }
 
   get description() {

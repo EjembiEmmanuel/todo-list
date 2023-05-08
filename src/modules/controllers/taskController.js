@@ -17,7 +17,7 @@ function createTask() {
 
   const dateCreated = format(new Date(), "E dd MMM yyyy");
 
-  const todo = new Todo(input.value, dateCreated, false);
+  const todo = new Todo(input.value, dateCreated, false, false);
 
   return todo;
 }
@@ -77,12 +77,23 @@ export function renderTasks() {
 
       const starIcon = new Image();
       starIcon.setAttribute("class", "star-icon");
-      starIcon.setAttribute("onmouseover", "lib.showMarkAsImportantIcon(this)");
-      starIcon.setAttribute(
-        "onmouseout",
-        "lib.removeMarkAsImportantIcon(this)"
-      );
-      starIcon.src = StarIcon;
+      starIcon.setAttribute("data-key", `${i}`);
+
+      if (currentTask.important) {
+        starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
+        starIcon.src = StarFilledIcon;
+      } else {
+        starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
+        starIcon.setAttribute(
+          "onmouseover",
+          "lib.showMarkAsImportantIcon(this)"
+        );
+        starIcon.setAttribute(
+          "onmouseout",
+          "lib.removeMarkAsImportantIcon(this)"
+        );
+        starIcon.src = StarIcon;
+      }
 
       const taskContainer = document.createElement("div");
       taskContainer.setAttribute("class", "task-container");
@@ -177,7 +188,19 @@ export function setStatus(taskId) {
     task.status = false;
   }
 
-  console.log(task);
+  renderTasks();
+}
+
+export function setImportant(taskId) {
+  const index = Number(taskId);
+  const task = todoList[index];
+
+  if (task.important === false) {
+    task.important = true;
+  } else {
+    task.important = false;
+  }
+
   renderTasks();
 }
 
