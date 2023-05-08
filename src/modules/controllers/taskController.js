@@ -17,7 +17,7 @@ function createTask() {
 
   const dateCreated = format(new Date(), "E dd MMM yyyy");
 
-  const todo = new Todo(input.value, dateCreated);
+  const todo = new Todo(input.value, dateCreated, false);
 
   return todo;
 }
@@ -31,36 +31,76 @@ export function renderTasks() {
   main.replaceChildren();
 
   for (let i = 0; i < todoList.length; i++) {
-    const cuurentTask = todoList[i];
+    const currentTask = todoList[i];
 
-    const circleIcon = new Image();
-    circleIcon.setAttribute("class", "circle-icon");
-    circleIcon.setAttribute("onmouseover", "lib.showMarkAsCompleteIcon(this)");
-    circleIcon.setAttribute("onmouseout", "lib.removeMarkAsCompleteIcon(this)");
-    circleIcon.src = CicleUnchecked;
+    if (currentTask.status) {
+      const circleIcon = new Image();
+      circleIcon.setAttribute("class", "circle-icon");
+      circleIcon.setAttribute("data-key", `${i}`);
+      circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
+      circleIcon.src = CicleChecked;
 
-    const starIcon = new Image();
-    starIcon.setAttribute("class", "star-icon");
-    starIcon.setAttribute("onmouseover", "lib.showMarkAsImportantIcon(this)");
-    starIcon.setAttribute("onmouseout", "lib.removeMarkAsImportantIcon(this)");
-    starIcon.src = StarIcon;
+      const starIcon = new Image();
+      starIcon.setAttribute("class", "star-icon");
+      starIcon.src = StarIcon;
 
-    const taskContainer = document.createElement("div");
-    taskContainer.setAttribute("class", "task-container");
-    taskContainer.setAttribute("data-key", `${i}`);
-    taskContainer.setAttribute(
-      "onclick",
-      "lib.showTaskDetails(this.dataset.key)"
-    );
-    Render(taskContainer, circleIcon);
-    Render(main, taskContainer);
+      const taskContainer = document.createElement("div");
+      taskContainer.setAttribute("class", "task-container");
+      taskContainer.setAttribute("data-key", `${i}`);
+      taskContainer.setAttribute(
+        "onclick",
+        "lib.showTaskDetails(this.dataset.key)"
+      );
+      Render(taskContainer, circleIcon);
+      Render(main, taskContainer);
 
-    const newTask = document.createElement("p");
-    newTask.setAttribute("class", "tasks");
-    newTask.textContent = todoList[i].title;
-    Render(taskContainer, newTask);
+      const newTask = document.createElement("p");
+      newTask.setAttribute("class", "tasks");
+      newTask.textContent = currentTask.title;
+      Render(taskContainer, newTask);
 
-    Render(taskContainer, starIcon);
+      Render(taskContainer, starIcon);
+    } else {
+      const circleIcon = new Image();
+      circleIcon.setAttribute("class", "circle-icon");
+      circleIcon.setAttribute("data-key", `${i}`);
+      circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
+      circleIcon.setAttribute(
+        "onmouseover",
+        "lib.showMarkAsCompleteIcon(this)"
+      );
+      circleIcon.setAttribute(
+        "onmouseout",
+        "lib.removeMarkAsCompleteIcon(this)"
+      );
+      circleIcon.src = CicleUnchecked;
+
+      const starIcon = new Image();
+      starIcon.setAttribute("class", "star-icon");
+      starIcon.setAttribute("onmouseover", "lib.showMarkAsImportantIcon(this)");
+      starIcon.setAttribute(
+        "onmouseout",
+        "lib.removeMarkAsImportantIcon(this)"
+      );
+      starIcon.src = StarIcon;
+
+      const taskContainer = document.createElement("div");
+      taskContainer.setAttribute("class", "task-container");
+      taskContainer.setAttribute("data-key", `${i}`);
+      taskContainer.setAttribute(
+        "onclick",
+        "lib.showTaskDetails(this.dataset.key)"
+      );
+      Render(taskContainer, circleIcon);
+      Render(main, taskContainer);
+
+      const newTask = document.createElement("p");
+      newTask.setAttribute("class", "tasks");
+      newTask.textContent = currentTask.title;
+      Render(taskContainer, newTask);
+
+      Render(taskContainer, starIcon);
+    }
   }
 }
 
@@ -78,12 +118,6 @@ export function showMarkAsImportantIcon(element) {
 
 export function removeMarkAsImportantIcon(element) {
   element.src = StarIcon;
-}
-
-export function handleTask() {
-  const task = createTask();
-  storeTask(task);
-  renderTasks();
 }
 
 export function showTaskDetails(taskId) {
@@ -130,5 +164,25 @@ export function setDescription(taskId) {
   const index = Number(taskId);
   const task = todoList[index];
   task.description = note;
+  renderTasks();
+}
+
+export function setStatus(taskId) {
+  const index = Number(taskId);
+  const task = todoList[index];
+
+  if (task.status === false) {
+    task.status = true;
+  } else {
+    task.status = false;
+  }
+
+  console.log(task);
+  renderTasks();
+}
+
+export function handleTask() {
+  const task = createTask();
+  storeTask(task);
   renderTasks();
 }
