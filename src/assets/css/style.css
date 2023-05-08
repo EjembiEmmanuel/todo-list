@@ -20,6 +20,10 @@ body {
     border-left: 3px solid rgb(91, 182, 185);
 }
 
+.hidden {
+    display: none;
+}
+
 /* Sidebar */
 #sidebar {
     width: 15%;
@@ -122,3 +126,95 @@ body {
 #content {
     width: 100%;
 }
+
+#task-details{
+    width: 35%;
+    background-color: rgb(34, 39, 39);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#close-task-details {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#close-task-details button {
+    background-color: transparent;
+    margin-left: auto;
+    border: none;
+}
+
+#close-task-details button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+#task-title,
+#task-day,
+#task-schedule,
+#task-note {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    margin-bottom:10px;
+    border-radius: 5px;
+}
+
+#task-day:hover,
+#task-schedule:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#task-date {
+    display: flex;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#task-date p {
+    color: white;
+    font-family: monospace;
+    margin: 10px;
+}
+
+#task-date button {
+    background-color: transparent;
+    margin-left: auto;
+    border: none;
+}
+
+#task-date button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+#task-title h1,
+#task-day p,
+#task-schedule p {
+    color: white;
+    font-family: monospace;
+}
+
+#task-note textarea {
+    background-color: transparent;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    outline: none;
+    border: none;
+}
+
+#task-note textarea::placeholder {
+    color: white;
+}
+
+.task-details-icon {
+    width: 20px;
+    margin: 10px;
+}
+
+#task-star-icon {
+    margin-left: auto;
+}
+/* Main */
