@@ -44,31 +44,31 @@
     <div id="content">
     </div>
 
-    <div id="task-details" class="">
+    <div id="task-details">
         <div id="close-task-details">
-            <button>
+            <button onclick="lib.hideTaskDetails()">
                 <img src="f786b7fe311e2ce19568.svg" alt="" class="task-details-icon">
             </button>
         </div>
         <div id="task-title">
-            <img src="1845a72bf517c87c7542.svg" alt="" class="task-details-icon">
-            <h1>Coding</h1>
-            <img src="85d2ea0eed6c0d1c1ff0.svg" alt="" id="task-star-icon" class="task-details-icon">
+            <img src="1845a72bf517c87c7542.svg" alt="" class="task-details-icon" onmouseover="lib.showMarkAsCompleteIcon(this)" onmouseout="lib.removeMarkAsCompleteIcon(this)">
+            <h1 id="task-title-text"></h1>
+            <img src="85d2ea0eed6c0d1c1ff0.svg" alt="" id="task-star-icon" class="task-details-icon" onmouseover="lib.showMarkAsImportantIcon(this)" onmouseout="lib.removeMarkAsImportantIcon(this)">
         </div>
         <div id="task-day">
             <img src="d4015ea94d0297707318.svg" alt="" class="task-details-icon">
-            <p>Add to my day</p>
+            <p>Add to today</p>
         </div>
         <div id="task-schedule">
             <img src="ded2c396dc7a6aa6f081.svg" alt="" class="task-details-icon">
             <p>Add due date</p>
         </div>
         <div id="task-note">
-            <textarea name="" id="" cols="40" rows="10" placeholder="Add a note"></textarea>
+            <textarea name="" id="task-note-text" cols="40" rows="10" placeholder="Add a note" onfocusout="lib.setDescription(this.dataset.key)"></textarea>
         </div>
         <div id="task-date">
-            <p>Created on Tue 28 Feb</p>
-            <button>
+            <p id="task-date-text"></p>
+            <button id="delete-task-btn">
                 <img src="5c2e38f3ff8dd6db4b99.svg" alt="" class="task-details-icon">
             </button>
         </div>
