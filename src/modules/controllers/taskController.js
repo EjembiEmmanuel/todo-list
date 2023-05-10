@@ -9,8 +9,41 @@ import StarFilledIcon from "../../assets/icons/star-filled.svg";
 import "../../assets/css/taskController.css";
 
 import { format } from "date-fns";
+import { enIE } from "date-fns/locale";
 
 let todoList = [];
+
+function createTaskComponent(taskId, task) {
+  const taskContainer = document.createElement("div");
+  taskContainer.setAttribute("class", "task-container");
+  taskContainer.setAttribute("data-key", `${taskId}`);
+  taskContainer.setAttribute(
+    "onclick",
+    "lib.showTaskDetails(this.dataset.key)"
+  );
+
+  const circleIcon = document.createElement("div");
+  circleIcon.setAttribute("class", "checkmark-wrapper");
+  circleIcon.setAttribute("data-key", `${taskId}`);
+  circleIcon.setAttribute("onclick", "lib.toggleStatus(this)");
+  Render(taskContainer, circleIcon);
+
+  if (task.status) {
+    const checkMark = document.createElement("span");
+    checkMark.setAttribute("class", "checkmark");
+    Render(circleIcon, checkMark);
+  } else {
+    const checkMark = document.createElement("span");
+    Render(circleIcon, checkMark);
+  }
+
+  const taskText = document.createElement("p");
+  taskText.setAttribute("class", "tasks");
+  taskText.textContent = task.title;
+  Render(taskContainer, taskText);
+
+  return taskContainer;
+}
 
 function createTask() {
   const input = document.querySelector("#form-input");
@@ -33,85 +66,88 @@ export function renderTasks() {
   for (let i = 0; i < todoList.length; i++) {
     const currentTask = todoList[i];
 
-    if (currentTask.status) {
-      const circleIcon = new Image();
-      circleIcon.setAttribute("class", "circle-icon");
-      circleIcon.setAttribute("data-key", `${i}`);
-      circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
-      circleIcon.src = CicleChecked;
+    const taskComponent = createTaskComponent(i, currentTask);
+    Render(main, taskComponent);
 
-      const starIcon = new Image();
-      starIcon.setAttribute("class", "star-icon");
-      starIcon.src = StarIcon;
+    //   if (currentTask.status) {
+    //     const circleIcon = new Image();
+    //     circleIcon.setAttribute("class", "circle-icon");
+    //     circleIcon.setAttribute("data-key", `${i}`);
+    //     circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
+    //     circleIcon.src = CicleChecked;
 
-      const taskContainer = document.createElement("div");
-      taskContainer.setAttribute("class", "task-container");
-      taskContainer.setAttribute("data-key", `${i}`);
-      taskContainer.setAttribute(
-        "onclick",
-        "lib.showTaskDetails(this.dataset.key)"
-      );
-      Render(taskContainer, circleIcon);
-      Render(main, taskContainer);
+    //     const starIcon = new Image();
+    //     starIcon.setAttribute("class", "star-icon");
+    //     starIcon.src = StarIcon;
 
-      const newTask = document.createElement("p");
-      newTask.setAttribute("class", "tasks");
-      newTask.textContent = currentTask.title;
-      Render(taskContainer, newTask);
+    //     const taskContainer = document.createElement("div");
+    //     taskContainer.setAttribute("class", "task-container");
+    //     taskContainer.setAttribute("data-key", `${i}`);
+    //     taskContainer.setAttribute(
+    //       "onclick",
+    //       "lib.showTaskDetails(this.dataset.key)"
+    //     );
+    //     Render(taskContainer, circleIcon);
+    //     Render(main, taskContainer);
 
-      Render(taskContainer, starIcon);
-    } else {
-      const circleIcon = new Image();
-      circleIcon.setAttribute("class", "circle-icon");
-      circleIcon.setAttribute("data-key", `${i}`);
-      circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
-      circleIcon.setAttribute(
-        "onmouseover",
-        "lib.showMarkAsCompleteIcon(this)"
-      );
-      circleIcon.setAttribute(
-        "onmouseout",
-        "lib.removeMarkAsCompleteIcon(this)"
-      );
-      circleIcon.src = CicleUnchecked;
+    //     const newTask = document.createElement("p");
+    //     newTask.setAttribute("class", "tasks");
+    //     newTask.textContent = currentTask.title;
+    //     Render(taskContainer, newTask);
 
-      const starIcon = new Image();
-      starIcon.setAttribute("class", "star-icon");
-      starIcon.setAttribute("data-key", `${i}`);
+    //     Render(taskContainer, starIcon);
+    //   } else {
+    //     const circleIcon = new Image();
+    //     circleIcon.setAttribute("class", "circle-icon");
+    //     circleIcon.setAttribute("data-key", `${i}`);
+    //     circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
+    //     circleIcon.setAttribute(
+    //       "onmouseover",
+    //       "lib.showMarkAsCompleteIcon(this)"
+    //     );
+    //     circleIcon.setAttribute(
+    //       "onmouseout",
+    //       "lib.removeMarkAsCompleteIcon(this)"
+    //     );
+    //     circleIcon.src = CicleUnchecked;
 
-      if (currentTask.important) {
-        starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
-        starIcon.src = StarFilledIcon;
-      } else {
-        starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
-        starIcon.setAttribute(
-          "onmouseover",
-          "lib.showMarkAsImportantIcon(this)"
-        );
-        starIcon.setAttribute(
-          "onmouseout",
-          "lib.removeMarkAsImportantIcon(this)"
-        );
-        starIcon.src = StarIcon;
-      }
+    //     const starIcon = new Image();
+    //     starIcon.setAttribute("class", "star-icon");
+    //     starIcon.setAttribute("data-key", `${i}`);
 
-      const taskContainer = document.createElement("div");
-      taskContainer.setAttribute("class", "task-container");
-      taskContainer.setAttribute("data-key", `${i}`);
-      taskContainer.setAttribute(
-        "onclick",
-        "lib.showTaskDetails(this.dataset.key)"
-      );
-      Render(taskContainer, circleIcon);
-      Render(main, taskContainer);
+    //     if (currentTask.important) {
+    //       starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
+    //       starIcon.src = StarFilledIcon;
+    //     } else {
+    //       starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
+    //       starIcon.setAttribute(
+    //         "onmouseover",
+    //         "lib.showMarkAsImportantIcon(this)"
+    //       );
+    //       starIcon.setAttribute(
+    //         "onmouseout",
+    //         "lib.removeMarkAsImportantIcon(this)"
+    //       );
+    //       starIcon.src = StarIcon;
+    //     }
 
-      const newTask = document.createElement("p");
-      newTask.setAttribute("class", "tasks");
-      newTask.textContent = currentTask.title;
-      Render(taskContainer, newTask);
+    //     const taskContainer = document.createElement("div");
+    //     taskContainer.setAttribute("class", "task-container");
+    //     taskContainer.setAttribute("data-key", `${i}`);
+    //     taskContainer.setAttribute(
+    //       "onclick",
+    //       "lib.showTaskDetails(this.dataset.key)"
+    //     );
+    //     Render(taskContainer, circleIcon);
+    //     Render(main, taskContainer);
 
-      Render(taskContainer, starIcon);
-    }
+    //     const newTask = document.createElement("p");
+    //     newTask.setAttribute("class", "tasks");
+    //     newTask.textContent = currentTask.title;
+    //     Render(taskContainer, newTask);
+
+    //     Render(taskContainer, starIcon);
+    //   }
   }
 }
 
@@ -178,8 +214,8 @@ export function setDescription(taskId) {
   renderTasks();
 }
 
-export function setStatus(taskId) {
-  const index = Number(taskId);
+export function toggleStatus(element) {
+  const index = Number(element.dataset.key);
   const task = todoList[index];
 
   if (task.status === false) {
@@ -188,7 +224,9 @@ export function setStatus(taskId) {
     task.status = false;
   }
 
-  renderTasks();
+  console.log(task);
+
+  element.firstElementChild.classList.toggle("checkmark");
 }
 
 export function setImportant(taskId) {
