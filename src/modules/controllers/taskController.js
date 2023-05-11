@@ -3,13 +3,10 @@ import Todo from "../todo.js";
 
 import CicleUnchecked from "../../assets/icons/circle-unchecked.svg";
 import CicleChecked from "../../assets/icons/circle-checked.svg";
-import StarIcon from "../../assets/icons/star.svg";
-import StarFilledIcon from "../../assets/icons/star-filled.svg";
 
 import "../../assets/css/taskController.css";
 
 import { format } from "date-fns";
-import { enIE } from "date-fns/locale";
 
 let todoList = [];
 
@@ -17,10 +14,7 @@ function createTaskComponent(taskId, task) {
   const taskContainer = document.createElement("div");
   taskContainer.setAttribute("class", "task-container");
   taskContainer.setAttribute("data-key", `${taskId}`);
-  taskContainer.setAttribute(
-    "onclick",
-    "lib.showTaskDetails(this.dataset.key)"
-  );
+  taskContainer.setAttribute("onclick", "lib.showTaskDetails(this)");
 
   const circleIcon = document.createElement("div");
   circleIcon.setAttribute("class", "checkmark-wrapper");
@@ -50,7 +44,7 @@ function createTask() {
 
   const dateCreated = format(new Date(), "E dd MMM yyyy");
 
-  const todo = new Todo(input.value, dateCreated, false, false);
+  const todo = new Todo(input.value, dateCreated, false);
 
   return todo;
 }
@@ -68,112 +62,25 @@ export function renderTasks() {
 
     const taskComponent = createTaskComponent(i, currentTask);
     Render(main, taskComponent);
-
-    //   if (currentTask.status) {
-    //     const circleIcon = new Image();
-    //     circleIcon.setAttribute("class", "circle-icon");
-    //     circleIcon.setAttribute("data-key", `${i}`);
-    //     circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
-    //     circleIcon.src = CicleChecked;
-
-    //     const starIcon = new Image();
-    //     starIcon.setAttribute("class", "star-icon");
-    //     starIcon.src = StarIcon;
-
-    //     const taskContainer = document.createElement("div");
-    //     taskContainer.setAttribute("class", "task-container");
-    //     taskContainer.setAttribute("data-key", `${i}`);
-    //     taskContainer.setAttribute(
-    //       "onclick",
-    //       "lib.showTaskDetails(this.dataset.key)"
-    //     );
-    //     Render(taskContainer, circleIcon);
-    //     Render(main, taskContainer);
-
-    //     const newTask = document.createElement("p");
-    //     newTask.setAttribute("class", "tasks");
-    //     newTask.textContent = currentTask.title;
-    //     Render(taskContainer, newTask);
-
-    //     Render(taskContainer, starIcon);
-    //   } else {
-    //     const circleIcon = new Image();
-    //     circleIcon.setAttribute("class", "circle-icon");
-    //     circleIcon.setAttribute("data-key", `${i}`);
-    //     circleIcon.setAttribute("onclick", "lib.setStatus(this.dataset.key)");
-    //     circleIcon.setAttribute(
-    //       "onmouseover",
-    //       "lib.showMarkAsCompleteIcon(this)"
-    //     );
-    //     circleIcon.setAttribute(
-    //       "onmouseout",
-    //       "lib.removeMarkAsCompleteIcon(this)"
-    //     );
-    //     circleIcon.src = CicleUnchecked;
-
-    //     const starIcon = new Image();
-    //     starIcon.setAttribute("class", "star-icon");
-    //     starIcon.setAttribute("data-key", `${i}`);
-
-    //     if (currentTask.important) {
-    //       starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
-    //       starIcon.src = StarFilledIcon;
-    //     } else {
-    //       starIcon.setAttribute("onclick", "lib.setImportant(this.dataset.key)");
-    //       starIcon.setAttribute(
-    //         "onmouseover",
-    //         "lib.showMarkAsImportantIcon(this)"
-    //       );
-    //       starIcon.setAttribute(
-    //         "onmouseout",
-    //         "lib.removeMarkAsImportantIcon(this)"
-    //       );
-    //       starIcon.src = StarIcon;
-    //     }
-
-    //     const taskContainer = document.createElement("div");
-    //     taskContainer.setAttribute("class", "task-container");
-    //     taskContainer.setAttribute("data-key", `${i}`);
-    //     taskContainer.setAttribute(
-    //       "onclick",
-    //       "lib.showTaskDetails(this.dataset.key)"
-    //     );
-    //     Render(taskContainer, circleIcon);
-    //     Render(main, taskContainer);
-
-    //     const newTask = document.createElement("p");
-    //     newTask.setAttribute("class", "tasks");
-    //     newTask.textContent = currentTask.title;
-    //     Render(taskContainer, newTask);
-
-    //     Render(taskContainer, starIcon);
-    //   }
   }
 }
 
-export function showMarkAsCompleteIcon(element) {
-  element.src = CicleChecked;
-}
-
-export function removeMarkAsCompleteIcon(element) {
-  element.src = CicleUnchecked;
-}
-
-export function showMarkAsImportantIcon(element) {
-  element.src = StarFilledIcon;
-}
-
-export function removeMarkAsImportantIcon(element) {
-  element.src = StarIcon;
-}
-
-export function showTaskDetails(taskId) {
+export function showTaskDetails(element) {
   const taskDetails = document.querySelector("#task-details");
   taskDetails.style.display = "flex";
 
-  const index = Number(taskId);
+  const index = element.dataset.key;
 
   const task = todoList[index];
+
+  const checkMark =
+    taskDetails.querySelector(".checkmark-wrapper").firstElementChild;
+
+  if (task.status) {
+    checkMark.classList.add("checkmark");
+  } else {
+    checkMark.classList.remove("checkmark");
+  }
 
   const taskTitle = document.querySelector("#task-title-text");
   taskTitle.textContent = task.title;
@@ -183,8 +90,8 @@ export function showTaskDetails(taskId) {
 
   const taskNote = document.querySelector("#task-note-text");
   taskNote.setAttribute("data-key", `${index}`);
+
   if (task.description) {
-    console.log(task.description);
     taskNote.value = task.description;
   } else {
     taskNote.value = "";
@@ -223,8 +130,6 @@ export function toggleStatus(element) {
   } else {
     task.status = false;
   }
-
-  console.log(task);
 
   element.firstElementChild.classList.toggle("checkmark");
 }

@@ -1,7 +1,6 @@
 import Render from "../render.js";
 import Task from "./task.js";
 import MyDay from "./myDay.js";
-import Important from "./important.js";
 import Schedule from "./schedule.js";
 import { renderTasks } from "../controllers/taskController.js";
 
@@ -25,19 +24,6 @@ menuBtns.forEach((menuBtn, index) =>
         }
         break;
       case 1:
-        let importantComponent = document.querySelector("#important-component");
-        if (!importantComponent) {
-          if (main.children.length > 0) {
-            let current = document.querySelector(".active");
-            current.classList.remove("active");
-            main.children.item(0).remove();
-          }
-          importantComponent = Important();
-          this.classList.add("active");
-          Render(main, importantComponent);
-        }
-        break;
-      case 2:
         let scheduleComponent = document.querySelector("#schedule-component");
         if (!scheduleComponent) {
           if (main.children.length > 0) {
@@ -50,7 +36,7 @@ menuBtns.forEach((menuBtn, index) =>
           Render(main, scheduleComponent);
         }
         break;
-      case 3:
+      case 2:
         let taskComponent = document.querySelector("#task-component");
         if (!taskComponent) {
           if (main.children.length > 0) {

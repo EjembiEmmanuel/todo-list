@@ -22,10 +22,6 @@
                     Today
                 </li>
                 <li class="menu-list-item">
-                    <img src="<%=require('./assets/icons/star.svg')%>" alt="" class="menu-icons">
-                    Important
-                </li>
-                <li class="menu-list-item">
                     <img src="<%=require('./assets/icons/schedule.svg')%>" alt="" class="menu-icons">
                     Scheduled
                 </li>
@@ -51,9 +47,10 @@
             </button>
         </div>
         <div id="task-title">
-            <img src="<%=require('./assets/icons/circle-unchecked.svg')%>" alt="" class="task-details-icon" onmouseover="lib.showMarkAsCompleteIcon(this)" onmouseout="lib.removeMarkAsCompleteIcon(this)">
+            <div class="checkmark-wrapper">
+                <span></span>
+            </div>
             <h1 id="task-title-text"></h1>
-            <img src="<%=require('./assets/icons/star.svg')%>" alt="" id="task-star-icon" class="task-details-icon" onmouseover="lib.showMarkAsImportantIcon(this)" onmouseout="lib.removeMarkAsImportantIcon(this)">
         </div>
         <div id="task-day">
             <img src="<%=require('./assets/icons/day.svg')%>" alt="" class="task-details-icon">
