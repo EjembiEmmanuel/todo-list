@@ -65,6 +65,20 @@ export function renderTasks() {
   }
 }
 
+export function renderScheduledTasks() {
+  const main = document.querySelector("#main");
+  main.replaceChildren();
+
+  for (let i = 0; i < todoList.length; i++) {
+    const currentTask = todoList[i];
+
+    if (currentTask.dueDate) {
+      const taskComponent = createTaskComponent(i, currentTask);
+      Render(main, taskComponent);
+    }
+  }
+}
+
 export function showTaskDetails(element) {
   const taskDetails = document.querySelector("#task-details");
   taskDetails.style.display = "flex";
@@ -84,6 +98,9 @@ export function showTaskDetails(element) {
 
   const taskTitle = document.querySelector("#task-title-text");
   taskTitle.textContent = task.title;
+
+  const dueDate = taskDetails.querySelector("#due-date");
+  dueDate.setAttribute("data-key", `${index}`);
 
   const taskDate = document.querySelector("#task-date-text");
   taskDate.textContent = `Created on ${task.dateCreated}`;
@@ -145,6 +162,18 @@ export function setImportant(taskId) {
   }
 
   renderTasks();
+}
+
+export function setDueDate() {
+  const element = document.querySelector("#due-date");
+  const dueDate = format(new Date(element.value), "dd/MMM/yyyy");
+  const index = element.dataset.key;
+
+  const task = todoList[index];
+
+  task.dueDate = dueDate;
+
+  console.log(task.dueDate === format(new Date(), "dd/MMM/yyyy"));
 }
 
 export function handleTask() {

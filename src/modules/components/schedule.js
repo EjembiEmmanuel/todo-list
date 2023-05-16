@@ -22,5 +22,9 @@ export default function Schedule() {
   headerText.textContent = "Schedule";
   Render(header, headerText);
 
+  const main = document.createElement("div");
+  main.setAttribute("id", "main");
+  Render(schedule, main);
+
   return schedule;
 }

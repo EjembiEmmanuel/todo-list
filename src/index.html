@@ -58,7 +58,8 @@
         </div>
         <div id="task-schedule">
             <img src="<%=require('./assets/icons/schedule.svg')%>" alt="" class="task-details-icon">
-            <p>Add due date</p>
+            <input type="date" name="" id="due-date">
+            <input type="submit" value="Add due date" id="due-data-btn" onclick="lib.setDueDate()">
         </div>
         <div id="task-note">
             <textarea name="" id="task-note-text" cols="40" rows="10" placeholder="Add a note" onfocusout="lib.setDescription(this.dataset.key)"></textarea>

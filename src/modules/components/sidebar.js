@@ -2,7 +2,10 @@ import Render from "../render.js";
 import Task from "./task.js";
 import MyDay from "./myDay.js";
 import Schedule from "./schedule.js";
-import { renderTasks } from "../controllers/taskController.js";
+import {
+  renderTasks,
+  renderScheduledTasks,
+} from "../controllers/taskController.js";
 
 const menuBtns = document.querySelectorAll(".menu-list-item");
 let main = document.querySelector("#content");
@@ -34,8 +37,9 @@ menuBtns.forEach((menuBtn, index) =>
           scheduleComponent = Schedule();
           this.classList.add("active");
           Render(main, scheduleComponent);
+          renderScheduledTasks();
+          break;
         }
-        break;
       case 2:
         let taskComponent = document.querySelector("#task-component");
         if (!taskComponent) {

@@ -13,6 +13,14 @@ export default class Todo {
     this.complete = status;
   }
 
+  get dueDate() {
+    return this.date;
+  }
+
+  set dueDate(date) {
+    this.date = date;
+  }
+
   get description() {
     return this.notes;
   }

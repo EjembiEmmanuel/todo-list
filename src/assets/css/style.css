@@ -204,6 +204,26 @@ body {
     font-family: monospace;
 }
 
+#task-schedule input[type="date"] {
+    background-color: transparent;
+    color: white;
+    margin-right: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+#task-schedule input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(100%)
+
+}
+
+#task-schedule input[type="submit"] {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
 #task-note textarea {
     background-color: transparent;
     color: white;
