@@ -43,8 +43,6 @@ function createTaskComponent(taskId, task) {
     if (task.dueDate === format(new Date(), "dd/MMM/yyyy")) {
       dueDate.textContent = "Due today";
     } else {
-      console.log(task.dueDate);
-      console.log(new Date());
       dueDate.textContent = `Due on ${format(
         new Date(task.dueDate),
         "E dd MMM yyyy"
@@ -79,6 +77,22 @@ export function renderTasks() {
 
     const taskComponent = createTaskComponent(i, currentTask);
     Render(main, taskComponent);
+  }
+}
+
+export function renderMyDayTasks() {
+  const main = document.querySelector("#main");
+  main.replaceChildren();
+
+  for (let i = 0; i < todoList.length; i++) {
+    const currentTask = todoList[i];
+
+    if (currentTask.dueDate) {
+      if (currentTask.dueDate === format(new Date(), "dd/MMM/yyyy")) {
+        const taskComponent = createTaskComponent(i, currentTask);
+        Render(main, taskComponent);
+      }
+    }
   }
 }
 

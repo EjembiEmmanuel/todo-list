@@ -5,6 +5,7 @@ import Schedule from "./schedule.js";
 import {
   renderTasks,
   renderScheduledTasks,
+  renderMyDayTasks,
 } from "../controllers/taskController.js";
 
 const menuBtns = document.querySelectorAll(".menu-list-item");
@@ -24,6 +25,7 @@ menuBtns.forEach((menuBtn, index) =>
           myDayComponent = MyDay();
           this.classList.add("active");
           Render(main, myDayComponent);
+          renderMyDayTasks();
         }
         break;
       case 1:
