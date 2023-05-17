@@ -1,14 +1,9 @@
 import Render from "../render.js";
 import Todo from "../todo.js";
 
-import CicleUnchecked from "../../assets/icons/circle-unchecked.svg";
-import CicleChecked from "../../assets/icons/circle-checked.svg";
-
 import "../../assets/css/taskController.css";
 
 import { format } from "date-fns";
-
-let todoList = [];
 
 function createTaskComponent(taskId, task) {
   const taskContainer = document.createElement("div");
@@ -65,12 +60,30 @@ function createTask() {
 }
 
 function storeTask(task) {
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
+
+  if (todoList === null) {
+    todoList = [];
+  }
+
+  localStorage.setItem("task", JSON.stringify(task));
   todoList.push(task);
+  localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+
+function updateTask(task, index) {
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
+
+  localStorage.setItem("task", JSON.stringify(task));
+  todoList[index] = task;
+  localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 
 export function renderTasks() {
   const main = document.querySelector("#main");
   main.replaceChildren();
+
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
 
   for (let i = 0; i < todoList.length; i++) {
     const currentTask = todoList[i];
@@ -83,6 +96,8 @@ export function renderTasks() {
 export function renderMyDayTasks() {
   const main = document.querySelector("#main");
   main.replaceChildren();
+
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
 
   for (let i = 0; i < todoList.length; i++) {
     const currentTask = todoList[i];
@@ -100,6 +115,8 @@ export function renderScheduledTasks() {
   const main = document.querySelector("#main");
   main.replaceChildren();
 
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
+
   for (let i = 0; i < todoList.length; i++) {
     const currentTask = todoList[i];
 
@@ -115,6 +132,8 @@ export function showTaskDetails(element) {
   taskDetails.style.display = "flex";
 
   const index = element.dataset.key;
+
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
 
   const task = todoList[index];
 
@@ -147,7 +166,9 @@ export function showTaskDetails(element) {
 
   const deleteTaskBtn = document.querySelector("#delete-task-btn");
   deleteTaskBtn.onclick = () => {
+    let todoList = JSON.parse(localStorage.getItem("todoList"));
     todoList.splice(index, 1);
+    localStorage.setItem("todoList", JSON.stringify(todoList));
     renderTasks();
     hideTaskDetails();
   };
@@ -164,13 +185,18 @@ export function setDescription(taskId) {
   const note = taskNote.value;
 
   const index = Number(taskId);
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
   const task = todoList[index];
   task.description = note;
+
+  updateTask(task, index);
+
   renderTasks();
 }
 
 export function toggleStatus(element) {
   const index = Number(element.dataset.key);
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
   const task = todoList[index];
 
   if (task.status === false) {
@@ -180,19 +206,8 @@ export function toggleStatus(element) {
   }
 
   element.firstElementChild.classList.toggle("checkmark");
-}
 
-export function setImportant(taskId) {
-  const index = Number(taskId);
-  const task = todoList[index];
-
-  if (task.important === false) {
-    task.important = true;
-  } else {
-    task.important = false;
-  }
-
-  renderTasks();
+  updateTask(task, index);
 }
 
 export function setDueDate() {
@@ -202,9 +217,12 @@ export function setDueDate() {
     const dueDate = format(new Date(element.value), "dd/MMM/yyyy");
     const index = element.dataset.key;
 
-    const task = todoList[index];
+    let todoList = JSON.parse(localStorage.getItem("todoList"));
 
+    const task = todoList[index];
     task.dueDate = dueDate;
+
+    updateTask(task, index);
     renderTasks();
   }
 }
