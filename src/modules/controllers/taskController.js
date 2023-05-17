@@ -183,13 +183,16 @@ export function setImportant(taskId) {
 
 export function setDueDate() {
   const element = document.querySelector("#due-date");
-  const dueDate = format(new Date(element.value), "dd/MMM/yyyy");
-  const index = element.dataset.key;
 
-  const task = todoList[index];
+  if (element.value !== "") {
+    const dueDate = format(new Date(element.value), "dd/MMM/yyyy");
+    const index = element.dataset.key;
 
-  task.dueDate = dueDate;
-  renderTasks();
+    const task = todoList[index];
+
+    task.dueDate = dueDate;
+    renderTasks();
+  }
 }
 
 export function handleTask() {
