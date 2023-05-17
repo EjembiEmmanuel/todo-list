@@ -38,8 +38,8 @@ menuBtns.forEach((menuBtn, index) =>
           this.classList.add("active");
           Render(main, scheduleComponent);
           renderScheduledTasks();
-          break;
         }
+        break;
       case 2:
         let taskComponent = document.querySelector("#task-component");
         if (!taskComponent) {
@@ -52,8 +52,8 @@ menuBtns.forEach((menuBtn, index) =>
           this.classList.add("active");
           Render(main, taskComponent);
           renderTasks();
-          break;
         }
+        break;
     }
   })
 );
