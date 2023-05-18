@@ -7,6 +7,7 @@ import {
   renderScheduledTasks,
   renderMyDayTasks,
 } from "../controllers/taskController.js";
+import { handleLists } from "../controllers/listController.js";
 
 const menuBtns = document.querySelectorAll(".menu-list-item");
 let main = document.querySelector("#content");
@@ -85,6 +86,7 @@ listForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let name = document.getElementById("name").value;
+  handleLists(name);
 
   modal.style.display = "none";
 });
