@@ -59,3 +59,32 @@ menuBtns.forEach((menuBtn, index) =>
     }
   })
 );
+
+const newlistBtn = document.querySelector("#new-list-btn");
+
+let modal = document.getElementById("listModal");
+let span = document.getElementsByClassName("close")[0];
+
+newlistBtn.onclick = function () {
+  modal.style.display = "block";
+};
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+let listForm = document.getElementById("listForm");
+
+listForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+
+  modal.style.display = "none";
+});
