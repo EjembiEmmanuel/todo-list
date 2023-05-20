@@ -7,6 +7,7 @@ module.exports = {
     index: "./src/index.js",
     sidebar: "./src/modules/components/sidebar.js",
     taskController: "./src/modules/controllers/taskController.js",
+    listController: "./src/modules/controllers/listController.js",
   },
   devtool: "inline-source-map",
   devServer: {

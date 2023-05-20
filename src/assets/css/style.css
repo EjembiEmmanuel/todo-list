@@ -121,6 +121,7 @@ body {
     font-family: monospace;
     list-style-type: none;
     padding-left: 10px;
+    margin-bottom: 5px;
     border-radius: 5px;
 }
 
