@@ -1,6 +1,7 @@
 import MyDay from "./modules/components/myDay.js";
 import Render from "./modules/render.js";
 import { renderMyDayTasks } from "./modules/controllers/taskController.js";
+import { renderListsFromLocalStrorage } from "./modules/controllers/listController.js";
 
 import "./assets/css/style.css";
 
@@ -12,4 +13,5 @@ window.onload = (event) => {
 
   Render(main, myDay);
   renderMyDayTasks();
+  renderListsFromLocalStrorage();
 };
