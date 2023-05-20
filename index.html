@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="sidebar.bundle.js"></script><script defer src="taskController.bundle.js"></script></head>
+<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="sidebar.bundle.js"></script><script defer src="taskController.bundle.js"></script><script defer src="listController.bundle.js"></script></head>
 <body>
     <div id="sidebar">
         <div id="user-area">
@@ -22,10 +22,6 @@
                     Today
                 </li>
                 <li class="menu-list-item">
-                    <img src="85d2ea0eed6c0d1c1ff0.svg" alt="" class="menu-icons">
-                    Important
-                </li>
-                <li class="menu-list-item">
                     <img src="ded2c396dc7a6aa6f081.svg" alt="" class="menu-icons">
                     Scheduled
                 </li>
@@ -34,6 +30,9 @@
                     Tasks
                 </li>
             </ul>
+        </div>
+        <div id="lists-container">
+            <ul id="lists"></ul>
         </div>
         <button id="new-list-btn">
             <img src="362ac4523c56291cd908.svg" alt="" class="add-icon">
@@ -51,17 +50,15 @@
             </button>
         </div>
         <div id="task-title">
-            <img src="1845a72bf517c87c7542.svg" alt="" class="task-details-icon" onmouseover="lib.showMarkAsCompleteIcon(this)" onmouseout="lib.removeMarkAsCompleteIcon(this)">
+            <div class="checkmark-wrapper">
+                <span></span>
+            </div>
             <h1 id="task-title-text"></h1>
-            <img src="85d2ea0eed6c0d1c1ff0.svg" alt="" id="task-star-icon" class="task-details-icon" onmouseover="lib.showMarkAsImportantIcon(this)" onmouseout="lib.removeMarkAsImportantIcon(this)">
-        </div>
-        <div id="task-day">
-            <img src="d4015ea94d0297707318.svg" alt="" class="task-details-icon">
-            <p>Add to today</p>
         </div>
         <div id="task-schedule">
             <img src="ded2c396dc7a6aa6f081.svg" alt="" class="task-details-icon">
-            <p>Add due date</p>
+            <input type="date" name="" id="due-date">
+            <input type="submit" value="Add due date" id="due-data-btn" onclick="lib.setDueDate()">
         </div>
         <div id="task-note">
             <textarea name="" id="task-note-text" cols="40" rows="10" placeholder="Add a note" onfocusout="lib.setDescription(this.dataset.key)"></textarea>
@@ -73,5 +70,18 @@
             </button>
         </div>
     </div>
+
+    <div id="listModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="listForm" action="#">
+                <h2>Add new List</h2>
+                <hr>
+                <input type="text" id="name" name="name" placeholder="Name" required><br>
+                <button type="submit">Add</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
 </body>
 </html>
