@@ -12,6 +12,15 @@ window.onload = (event) => {
   myDayItem.classList.add("active");
 
   Render(main, myDay);
-  renderMyDayTasks();
-  renderListsFromLocalStrorage();
+
+  let todoList = JSON.parse(localStorage.getItem("todoList"));
+  let lists = JSON.parse(localStorage.getItem("lists"));
+
+  if (todoList) {
+    renderMyDayTasks();
+  }
+
+  if (lists) {
+    renderListsFromLocalStrorage();
+  }
 };
