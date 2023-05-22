@@ -64,11 +64,7 @@ export function handleLists(value) {
   storeList(value);
   renderListsFromLocalStrorage();
 
-  // const current = document.querySelector(".active");
-  // current.classList.remove("active");
-
   const list = document.querySelector(`[data-name=${value}]`);
-  // list.classList.add("active");
 
   displayListComponent(list);
 }
