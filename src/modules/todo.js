@@ -1,16 +1,8 @@
 export default class Todo {
-  constructor(title, dateCreated) {
+  constructor(title, dateCreated, status) {
     this.title = title;
     this.dateCreated = dateCreated;
-    this.status = false;
-  }
-
-  get status() {
-    return this.complete;
-  }
-
-  set status(status) {
-    this.complete = status;
+    this.status = status;
   }
 
   get dueDate() {

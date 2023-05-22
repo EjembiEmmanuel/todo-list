@@ -44,7 +44,7 @@ export default function Task() {
   const formBtn = document.createElement("button");
   formBtn.setAttribute("id", "form-btn");
   formBtn.setAttribute("type", "submit");
-  formBtn.setAttribute("onclick", "lib.handleTask()");
+  formBtn.setAttribute("onclick", "taskController.handleTask()");
   Render(form, formBtn);
 
   const addIcon = new Image();

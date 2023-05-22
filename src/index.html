@@ -45,7 +45,7 @@
 
     <div id="task-details">
         <div id="close-task-details">
-            <button onclick="lib.hideTaskDetails()">
+            <button onclick="taskController.hideTaskDetails(); listController.hideTaskDetails();">
                 <img src="<%=require('./assets/icons/close.svg')%>" alt="" class="task-details-icon">
             </button>
         </div>
@@ -58,10 +58,10 @@
         <div id="task-schedule">
             <img src="<%=require('./assets/icons/schedule.svg')%>" alt="" class="task-details-icon">
             <input type="date" name="" id="due-date">
-            <input type="submit" value="Add due date" id="due-data-btn" onclick="lib.setDueDate()">
+            <input type="submit" value="Add due date" id="due-data-btn" onclick="taskController.setDueDate(); listController.setDueDate()">
         </div>
         <div id="task-note">
-            <textarea name="" id="task-note-text" cols="40" rows="10" placeholder="Add a note" onfocusout="lib.setDescription(this.dataset.key)"></textarea>
+            <textarea name="" id="task-note-text" cols="40" rows="10" placeholder="Add a note" onfocusout="taskController.setDescription(this.dataset.key); listController.setDescription(this.dataset.key)"></textarea>
         </div>
         <div id="task-date">
             <p id="task-date-text"></p>

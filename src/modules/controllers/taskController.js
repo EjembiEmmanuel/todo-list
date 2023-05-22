@@ -9,12 +9,12 @@ function createTaskComponent(taskId, task) {
   const taskContainer = document.createElement("div");
   taskContainer.setAttribute("class", "task-container");
   taskContainer.setAttribute("data-key", `${taskId}`);
-  taskContainer.setAttribute("onclick", "lib.showTaskDetails(this)");
+  taskContainer.setAttribute("onclick", "taskController.showTaskDetails(this)");
 
   const circleIcon = document.createElement("div");
   circleIcon.setAttribute("class", "checkmark-wrapper");
   circleIcon.setAttribute("data-key", `${taskId}`);
-  circleIcon.setAttribute("onclick", "lib.toggleStatus(this)");
+  circleIcon.setAttribute("onclick", "taskController.toggleStatus(this)");
   Render(taskContainer, circleIcon);
 
   if (task.status) {

@@ -85,8 +85,8 @@ let listForm = document.getElementById("listForm");
 listForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let name = document.getElementById("name").value;
-  handleLists(name);
+  let listName = document.getElementById("name").value;
+  handleLists(listName);
 
   modal.style.display = "none";
 });

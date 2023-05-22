@@ -103,6 +103,10 @@ body {
     margin-right: 15px;
 }
 
+#lists-container {
+    overflow: auto;
+}
+
 #lists {
     width: 100%;
     float: left;
