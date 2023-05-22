@@ -99,13 +99,15 @@ export function renderMyDayTasks() {
 
   let todoList = JSON.parse(localStorage.getItem("todoList"));
 
-  for (let i = 0; i < todoList.length; i++) {
-    const currentTask = todoList[i];
+  if (todoList !== null) {
+    for (let i = 0; i < todoList.length; i++) {
+      const currentTask = todoList[i];
 
-    if (currentTask.dueDate) {
-      if (currentTask.dueDate === format(new Date(), "dd/MMM/yyyy")) {
-        const taskComponent = createTaskComponent(i, currentTask);
-        Render(main, taskComponent);
+      if (currentTask.dueDate) {
+        if (currentTask.dueDate === format(new Date(), "dd/MMM/yyyy")) {
+          const taskComponent = createTaskComponent(i, currentTask);
+          Render(main, taskComponent);
+        }
       }
     }
   }
