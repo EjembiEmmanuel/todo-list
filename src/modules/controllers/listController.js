@@ -101,7 +101,7 @@ function createListComponent(list) {
 
   const form = document.createElement("form");
   form.setAttribute("id", "form");
-  form.setAttribute("action", "#");
+  // form.setAttribute("action", "#");
   Render(inputArea, form);
 
   const formBtn = document.createElement("button");
