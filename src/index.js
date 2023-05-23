@@ -13,9 +13,6 @@ window.onload = (event) => {
 
   Render(main, myDay);
 
-  // let todoList = JSON.parse(localStorage.getItem("todoList"));
-  // let lists = JSON.parse(localStorage.getItem("lists"));
-
   renderMyDayTasks();
   renderListsFromLocalStrorage();
 };
