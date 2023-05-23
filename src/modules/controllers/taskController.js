@@ -85,11 +85,13 @@ export function renderTasks() {
 
   let todoList = JSON.parse(localStorage.getItem("todoList"));
 
-  for (let i = 0; i < todoList.length; i++) {
-    const currentTask = todoList[i];
+  if (todoList !== null) {
+    for (let i = 0; i < todoList.length; i++) {
+      const currentTask = todoList[i];
 
-    const taskComponent = createTaskComponent(i, currentTask);
-    Render(main, taskComponent);
+      const taskComponent = createTaskComponent(i, currentTask);
+      Render(main, taskComponent);
+    }
   }
 }
 
@@ -119,12 +121,14 @@ export function renderScheduledTasks() {
 
   let todoList = JSON.parse(localStorage.getItem("todoList"));
 
-  for (let i = 0; i < todoList.length; i++) {
-    const currentTask = todoList[i];
+  if (todoList !== null) {
+    for (let i = 0; i < todoList.length; i++) {
+      const currentTask = todoList[i];
 
-    if (currentTask.dueDate) {
-      const taskComponent = createTaskComponent(i, currentTask);
-      Render(main, taskComponent);
+      if (currentTask.dueDate) {
+        const taskComponent = createTaskComponent(i, currentTask);
+        Render(main, taskComponent);
+      }
     }
   }
 }
